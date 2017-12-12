@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>type 判断</title>
+</head>
+<body>
+    <script>
+        var obj = {"name": "nzh"};
+        // [object Object]
+        // Object是obj的原型对象
+        var arr = ['1','2'];
+        var func = function() {};
+        console.log(obj.toString());
+        console.log(arr.toString());
+        console.log(func.toString());
+        var num = 123;
+        console.log(num.toString()); 
+        // [object Object]
+        // 要判断num  是数据类型怎么办
+        console.log(typeof num);
+        console.log(typeof arr);
+        console.log(Object.prototype.toString.call(arr));
+        // [object Array]
+        console.log(Object.prototype.toString.call(func));
+        // [object Function]
+        console.log(Object.prototype.toString.call(num));
+        console.log(Object.prototype.toString.call("abc"));
+        console.log(Object.prototype.toString.call(true));
+        console.log(Object.prototype.toString.call(undefined));
+        console.log(Object.prototype.toString.call(null));
+
+        // 判断是否为某种类型
+        // 封装 函数语义化
+        // 参数 obj any
+        // 结果 true/false
+
+        // var type = function(obj) {
+        //     var a = Object.prototype.toString.call(obj);
+        //     var isArray = function() {
+        //         console.log("这是一个数组");
+        //     }
+        //     var isFunction = function() {
+        //         console.log("这是一个方法");
+        //     }
+        //     if(a == '[object Array]'){
+        //         isArray();
+        //     } else if(a == '[object Function]') {
+        //         isFunction();
+        //     }
+        // }
+        // type(['1','2']);
+
+        // 减少全局污染
+        var Type = {
+            isArray: function(obj) {
+                return Object.prototype.toString.call(obj) === '[object Array]';
+            },
+            isFunction: function(obj) {
+                return Object.prototype.toString.call(obj) === '[object Function]';
+            },
+            isNumber: function(obj) {
+                return Object.prototype.toString.call(obj) === '[object Number]';
+            },
+            isUndefined: function(obj) {
+                return Object.prototype.toString.call(obj) === '[object Undefined]';
+            },
+            isBoolean: function(obj) {
+                return Object.prototype.toString.call(obj) === '[object Boolean]';
+            },
+            isString: function(obj) {
+                return Object.prototype.toString.call(obj) === '[object String]';
+            },
+            isObject: function(obj) {
+                return obj.toString() === '[object object]';
+            }
+        };
+        console.log(Type.isArray(arr));
+        var key = ['Array','Function','Number','Undefined','Boolean','String','object']
+        // Type["is" + key] = 'fdfdf';
+        // let 块级作用域
+        var Type = {
+            a: function() {
+                for(let i=0;i<key.length;i++) {
+                    "is"+key[i] = function(obj) {
+                        return Object.prototype.toString.call(obj) === '[object '+key[i]+']';
+                    }
+                }
+            }
+        }
+
+        // var Type = {};
+        // for(let i = 0,type;type=['Array','Function','Number','Undefined','Boolean','String','object'][i++];) {
+        //     // console.log(i,type);
+        //     // 异步
+        //     // Type[`is${type}`] = type;
+        //     Type['is' + type] = function(obj) {
+        //         // console.log(i);
+        //         return Object.prototype.toString.call(obj) === '[object ' + type +']'
+        //     }
+        // }
+        console.log(Type.isArray([1,2,3]));
+    </script>
+</body>
+</html>

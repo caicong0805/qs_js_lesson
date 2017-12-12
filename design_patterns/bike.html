@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS工厂模式</title>
+</head>
+<body>
+<script>
+    // 车店
+    // 首字母大写 类
+    //基本类型 number string boolean 
+    //        undefined null Symbol
+    // 其他的都叫Object 复杂类型 由属性和方法组成
+    // array( key index可遍历的对象) function [call()] 都是Object
+    var BicycleShop = function(name) {
+        // es5 类
+        //constructor
+        this.shopName = name;
+        console.log('实例化一个分店');
+    }
+
+    // js 继承 通过原型链 prototype
+    // 类的方法添加
+    BicycleShop.prototype = {
+        // 卖车方法
+        //类的属性在构造函数中
+        sellBicycle: function(model) {
+            var bicycle = BicycleFactory.createBicycle(model);
+            // switch (model) {
+            //     //工厂模式
+            //     case 'The Speedster': bicycle = new Speedster(); break;
+            //     case 'The Lowrider': bicycle = new Lowrider(); break;
+            //     case 'The Comfort Curiser': 
+            //     default: bicycle = new ComfortCuriser();
+            // }
+            return bicycle;
+        },
+        // assemble: function() {},
+        // repair: function() {}
+    }
+    // 工厂模式 JSON对象
+    // 将我们众多分支的对象实例化将给一个独立的工厂类来做
+    // 解耦
+    var BicycleFactory = {
+        // 实例化自行车的工作接管
+        createBicycle: function(model) {
+            var bicycle;
+            switch (model) {
+                //工厂模式
+                case 'The Speedster':
+                    bicycle = new Speedster(); 
+                    break;
+                case 'The Lowrider': 
+                    bicycle = new Lowrider(); 
+                    break;
+                case 'The Comfort Curiser': 
+                default: 
+                    bicycle = new ComfortCuriser();
+            }
+            // 优点： 升级
+            // 店最大的对象， case: 新车
+            // 关店
+            // 讲车的实例化交给BicycleShop类来做
+            // 不用关店
+            return bicycle;
+        }
+    }
+    var Speedster = function() {
+        this.type = 'The Speedster';
+    };
+    var Lowsider = function() {
+        this.type = 'The Lowsider';
+    };
+    var ComfortCuriser = function() {
+        this.type = 'The ComfortCuriser';
+    };
+
+    var californiaCruisers = new BicycleShop('加利福尼亚店');
+    var bike = californiaCruisers.sellBicycle('The Speedster');
+    console.log('我刚从'+californiaCruisers.shopName+'买了一辆'+bike.type);
+    // console.log(bike.type);
+    // BicycleShop.prototype.assemble = function() {};
+    
+</script>
+</body>
+</html>

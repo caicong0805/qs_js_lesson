@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>for of</title>
+</head>
+<body>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <script>
+        // const myArr = [1,2,3];
+        // for(let index = 0, len = myArr.length; index < len; index++) {
+        //     console.log(myArr[index]);
+        //     // break;continue;
+        //     if(index == 1) break;
+        // }
+        // // map 遍历 
+        // // foreach 优点：简洁
+        // myArr.forEach(function(value) {
+        //     // console.log(value);
+        // })
+        // // 进化循环
+        // // for in json
+        // // key 转化字符串 for in 不适合数组循环
+        // // 不care key 顺序
+        // for(let index in myArr){
+        //     // Number(index)
+        //     console.log(parsetInt(index)+myArr[index])
+        // }
+        // 比foreach优秀，可以停下循环
+        // let i = 0;
+        // for(let value of myArr) {
+        //     if(value ==2 ) continue;
+        //     console.log(i,value);
+        //     i++
+        // }
+        
+        // nodeList 类数组
+        // const boxes = document.querySelectorAll(".box");
+        // boxes.forEach(box => {
+        //     console.log(box.innerHTML);
+        // })
+        // for(let box of boxes) {
+        //     console.log(box.innerHTML);
+        // }
+        // const singer = 'Adele';
+        // for(let chr of singer) {
+        //     console.log(chr + "");
+        // }
+
+        // const fenfen = {
+        //     name: '分分',
+        //     sex: '男'
+        // }
+        // json not iterabel 迭代器
+        // for(let key of Object.keys(fenfen)) {
+        //     console.log(key + ":" + fenfen[key])
+        // }
+        // 数组重复
+        var singers = ['Adele','周杰伦','周杰伦','周杰伦'];
+        var uniqueSingers = new Set(singers);
+        console.log(uniqueSingers);
+        // iteranle
+        for(let singer of uniqueSingers) {
+            console.log(singer);
+        }
+    </script>
+</body>
+</html>

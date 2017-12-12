@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>对象字面量</title>
+</head>
+<body>
+   <script>
+    //    浏览器不支持es6 object 新方法
+    //    if (typeof Object.create !== 'function'){ 
+        /* 原型对象继承
+         *o 要传入的原型对象， 类型 Object
+         */
+    //     Object.create = function(o) {
+    //         // 类 创建了继承关系
+    //         var F = function() {};
+    //         F.prototype = o;
+    //         // 新的对象
+    //         return new F();
+    //     }
+    //  };
+       var stooge = {
+           "first-name": "Jerome",
+           "last-name": "Howard"
+       } 
+    //    toString constructor Object原型对象的方法
+    //    每个对象都会有一个原型对象，默认就是Object
+    //    原型对象 继承关系 对象
+    //    引用 两个对象的关系
+    //    console.log(stooge.toString());
+    //    将对象作为原型对象，生成一个新的对象
+       var anothor_stooge = Object.create(stooge);
+    //    console.log(anothor_stooge);
+       anothor_stooge.hasGirlFriend = false;
+       for(key in anothor_stooge) {
+        //    是否是自身的属性
+           if(anothor_stooge.hasOwnProperty(key)) {
+               console.log(key);
+               console.log(anothor_stooge[key]);
+           }
+           console.log(anothor_stooge.hasOwnProperty('constructor'));
+           console.log(anothor_stooge.hasOwnProperty('toString'));
+           console.log(anothor_stooge.hasOwnProperty('hasGirlFriend'));
+        //    js 动态属性
+           stooge.city = '南昌';
+           console.log(anothor_stooge.city);
+           delete stooge.city;
+           console.log(stooge);
+        //    console.log(key);
+        //    console.log(key);
+        //    console.log(anothor_stooge[key]);
+       }
+    //    console.log(stooge);
+    //    var name = stooge["first-name"] + stooge["last-name"];
+    //    console.log(name);
+    //    var x = stooge;
+    //    console.log(stooge);
+    //    var F = function(){};
+    //    F.prototype = stooge.prototype;
+    //    x.prototype = new F();
+    //    x.prototype.constructor = x;
+    //    x.sex = '男';
+    //    console.log(stooge);
+    //    console.log(x);
+
+   </script> 
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>reviewJS工厂模式</title>
+</head>
+<body>
+  <script>
+    var BicycleShop = function(name) {
+        this.shopName = name;
+        console.log('实例化了一个分店');
+    }
+    BicycleShop.prototype = {
+        sellBicycle:function(model) {
+           var bicycle = BicycleFactory.creatBicycle(model);
+        }
+    }
+    var BicycleFactory = {
+        creatBicycle:function(model) {
+            var bicycle;
+            switch(model){
+                case 'A':bicycle = new A();break;
+                case 'B':bicycle = new B();break;
+                case 'C':
+                default:bicycle = new C();
+            }
+            return bicycle;
+        }
+    }
+    var A = function() {
+        this.type = 'A';
+    }
+    var B = function() {
+        this.type = 'B';
+    }
+    var C = function() {
+        this.type = 'C';
+    }
+
+    var bs = new BicycleShop('车店名');
+    var bike = bs.sellBicycle('A');
+    console.log('我刚刚从'+bs.shopName+'买了一辆'+bike.type);
+  </script>
+    
+</body>
+</html>
