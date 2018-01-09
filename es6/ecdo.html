@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // ecDO 是作者的lib的名字
+        let ecDO = {
+            // 判断用何设备上网
+            // isAndroid
+            // isIPhone
+            
+            browserInfo(type){
+                switch(type){
+                    case 'android':
+                    // 正则
+                    return navigator.userAgent.toLowerCase().indexOf('android') !== -1 
+                    break;
+                    case 'iphone':
+                    return navigator.userAgent.toLowerCase().indexOf('iphone') !== -1
+                    case 'ipad':
+                    return navigator.userAgent.toLowerCase().indexOf('ipad') !== -1
+                    case 'weixin':
+                    return navigator.userAgent.toLowerCase().indexOf('micromessage') !== -1
+                    break;
+                    default:
+                    return navigator.userAgent
+                }
+                // BOM 访问网页的设备信息
+                console.log(
+                    navigator.userAgent
+                )
+            },
+            // 解析URL为一个对象
+            // http://localhost:3000/ecdo.html?a=1&b=3
+            // {
+            //     a:1,
+            //     b:3
+            // }query string -> query obj
+            getUrlPrmt(url){
+
+            }
+        }
+        // 区分一下微信
+        // if(ecDO.browserInfo('android')){
+        //     alert('您使用的是安卓手机')
+        // }else if(ecDO.browserInfo('iphone')){
+        //     alert('您使用的是iPhone手机')
+        // }else if(ecDO.browserInfo('ipad')){
+        //     alert('您使用的是ipad')
+        // }
+        if(ecDO.browserInfo('weixin')){
+            alert('您使用的是微信')
+        }
+    </script>
+</body>
+</html>
